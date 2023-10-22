@@ -42,5 +42,6 @@ return [
     'tabs' => [
         'info'      => 'Information',
         'seo'       => 'SEO',
+        'setting'   => 'Setting',
     ],
 ];

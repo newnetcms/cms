@@ -6,6 +6,13 @@
             {{ __('cms::page.tabs.info') }}
         </a>
     </li>
+    @if ($setting_view = get_cms_page_setting_view($item))
+        <li class="nav-item">
+            <a class="nav-link save-tab" data-toggle="pill" href="#cmsPageSetting">
+                {{ __('cms::page.tabs.setting') }}
+            </a>
+        </li>
+    @endif
     <li class="nav-item">
         <a class="nav-link save-tab" data-toggle="pill" href="#cmsPageSeo">
             {{ __('cms::page.tabs.seo') }}
@@ -39,4 +46,9 @@
     <div class="tab-pane fade" id="cmsPageSeo">
         @seo
     </div>
+    @if ($setting_view)
+        <div class="tab-pane fade" id="cmsPageSetting">
+            @includeIf($setting_view)
+        </div>
+    @endif
 </div>
