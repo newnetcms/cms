@@ -35,7 +35,7 @@ class CategoryController extends Controller
 
         $catIds = $category->getDescendantIds();
 
-        $defaultMax = config('cms.cms.category.item_per_page');
+        $defaultMax = config('cms.cms.item_per_page');
 
         $posts = $this->postRepository->paginateInCategory($catIds, $request->input('max', $defaultMax));
 
