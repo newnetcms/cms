@@ -55,6 +55,7 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
             ->whereHas('categories', function ($q) use ($catIds) {
                 $q->whereIn('category_id', $catIds);
             })
+            ->orderByDesc('id')
             ->paginate($itemPerPage);
     }
 
