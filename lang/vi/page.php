@@ -42,5 +42,6 @@ return [
     'tabs' => [
         'info'      => 'Thông tin chung',
         'seo'       => 'SEO',
+        'setting'   => 'Cài đặt',
     ],
 ];

@@ -97,12 +97,17 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
             ->paginate($itemOnPage);
     }
 
-    public function lastPost($limit = 10)
+    public function lastPost($limit = 10, $ignoreStickyPost = false)
     {
-        return Post::whereIsActive(1)
+        $builder = Post::whereIsActive(1)
             ->orderByDesc('published_at')
-            ->orderByDesc('id')
-            ->paginate($limit);
+            ->orderByDesc('id');
+
+        if ($ignoreStickyPost) {
+            $builder->where('is_sticky', 0);
+        }
+
+        return $builder->paginate($limit);
     }
 
     public function count()

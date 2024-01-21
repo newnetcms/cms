@@ -14,8 +14,7 @@ return [
         ],
     ],
 
-    'category' => [
-        'item_per_page' => 6,
-    ],
+    'item_per_page' => env('CMS_ITEM_PER_PAGE', 20),
+
     'media_manager' => true
 ];

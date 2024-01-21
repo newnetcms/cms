@@ -184,3 +184,16 @@ if (!function_exists('get_cms_related_posts')) {
         return app(PostRepositoryInterface::class)->relatedPosts($post, $limit);
     }
 }
+
+if (!function_exists('get_cms_page_setting_view')) {
+    function get_cms_page_setting_view($item)
+    {
+        if ($item && $item->page_layout) {
+            $setting_view = 'admin.pages.'.$item->page_layout;
+
+            return view()->exists($setting_view) ? $setting_view : null;
+        }
+
+        return null;
+    }
+}

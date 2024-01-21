@@ -2,6 +2,7 @@
 
 namespace Newnet\Cms\Models;
 
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Model;
 use Newnet\Seo\Traits\SeoableTrait;
 use Newnet\Core\Support\Traits\TranslatableTrait;
@@ -120,6 +121,7 @@ class Page extends Model
         'published_at',
         'image',
         'parent_id',
+        'settings',
     ];
 
     public $translatable = [
@@ -131,6 +133,7 @@ class Page extends Model
     protected $casts = [
         'is_active' => 'boolean',
         'published_at' => 'datetime',
+        'settings' => 'object',
     ];
 
     public function author()

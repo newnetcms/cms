@@ -64,7 +64,7 @@
                     <tbody>
                     @foreach($items as $item)
                         <tr>
-                            <td>{{ $loop->index + $items->firstItem(); }}</td>
+                            <td>{{ $loop->index + $items->firstItem() }}</td>
                             <td nowrap>
                                 <a href="{{ route('cms.admin.category.edit', $item->id) }}">
                                     {{ trim(str_pad('', $item->depth * 3, '-')) }}
