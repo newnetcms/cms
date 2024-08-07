@@ -131,9 +131,8 @@ class Post extends Model
     public function setCategoriesAttribute($value)
     {
         $value = array_filter($value);
-
         static::saved(function ($model) use ($value) {
-            !$value || $model->categories()->sync($value);
+            $model->categories()->sync($value);
         });
     }
 
