@@ -197,3 +197,11 @@ if (!function_exists('get_cms_page_setting_view')) {
         return null;
     }
 }
+
+if (!function_exists('get_cms_page_url')) {
+    function get_cms_page_url($page_id)
+    {
+        $page = Page::find($page_id);
+        return $page?->url;
+    }
+}
