@@ -15,6 +15,10 @@ return [
     'published_at' => 'Published At',
     'parent'       => 'Parent',
 
+    'layouts' => [
+        'home' => 'Home',
+    ],
+
     'index' => [
         'page_title'    => 'Page',
         'page_subtitle' => 'Page',

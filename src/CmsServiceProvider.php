@@ -56,6 +56,8 @@ class CmsServiceProvider extends BaseModuleServiceProvider
     {
         parent::boot();
 
+        PageLayout::add('home', __('cms::page.layouts.home'), 'index');
+
         Event::listen(NewnetInstalled::class, CreateHomePageListener::class);
     }
 

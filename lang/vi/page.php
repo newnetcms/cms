@@ -15,6 +15,10 @@ return [
     'published_at' => 'Ngày xuất bản',
     'parent'       => 'Trang cha',
 
+    'layouts' => [
+        'home' => 'Trang chủ',
+    ],
+
     'index' => [
         'page_title'    => 'Trang',
         'page_subtitle' => 'Trang',

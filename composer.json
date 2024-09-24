@@ -2,7 +2,8 @@
     "name": "newnetcms/cms",
     "description": "Module CMS",
     "require": {
-        "newnetcms/base": "*"
+        "newnetcms/base": "*",
+        "newnetcms/tag": "*"
     },
     "autoload": {
         "psr-4": {
