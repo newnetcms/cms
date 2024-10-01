@@ -107,6 +107,17 @@ if (!function_exists('get_cms_last_post')) {
     }
 }
 
+if (!function_exists('get_cms_post_top_view')) {
+    /**
+     * @param $limit
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    function get_cms_post_top_view($limit = 20)
+    {
+        return app(PostRepositoryInterface::class)->topView($limit);
+    }
+}
+
 if (!function_exists('get_cms_author')) {
     /**
      * @param $item

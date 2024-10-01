@@ -110,6 +110,15 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
         return $builder->paginate($limit);
     }
 
+    public function topView($limit = 10)
+    {
+        $builder = Post::whereIsActive(1)
+            ->orderByDesc('is_viewed')
+            ->orderByDesc('id');
+
+        return $builder->paginate($limit);
+    }
+
     public function count()
     {
         return Post::whereIsActive(1)->count();
