@@ -200,9 +200,15 @@ if (!function_exists('get_cms_page_setting_view')) {
     function get_cms_page_setting_view($item)
     {
         if ($item && $item->page_layout) {
-            $setting_view = 'admin.pages.'.$item->page_layout;
+            $theme_view = 'admin.pages.'.$item->page_layout;
+            if (view()->exists($theme_view)) {
+                return $theme_view;
+            }
 
-            return view()->exists($setting_view) ? $setting_view : null;
+            $default_view = PageLayout::getViewAdmin($item->page_layout);
+            if (view()->exists($default_view)) {
+                return $default_view;
+            }
         }
 
         return null;

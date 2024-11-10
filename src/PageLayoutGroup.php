@@ -19,7 +19,7 @@ class PageLayoutGroup
         return $this->items;
     }
 
-    public function add($key, $label, $view = null)
+    public function add($key, $label, $view = null, $viewAdmin = null)
     {
         $view = $view ?: "cms::web.page.{$key}";
 
@@ -27,6 +27,7 @@ class PageLayoutGroup
             'key'   => $key,
             'label' => $label,
             'view'  => $view,
+            'viewAdmin' => $viewAdmin,
         ];
 
         return $this;
@@ -50,5 +51,10 @@ class PageLayoutGroup
     public function getView($key)
     {
         return $this->items[$key]['view'] ?? $key;
+    }
+
+    public function getViewAdmin($key)
+    {
+        return $this->items[$key]['viewAdmin'] ?? $key;
     }
 }

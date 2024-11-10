@@ -48,8 +48,6 @@ class CmsServiceProvider extends BaseModuleServiceProvider
         });
 
         AliasLoader::getInstance()->alias('PageLayout', PageLayout::class);
-
-        require_once __DIR__.'/../helpers/helpers.php';
     }
 
     public function boot()
@@ -57,6 +55,7 @@ class CmsServiceProvider extends BaseModuleServiceProvider
         parent::boot();
 
         PageLayout::add('home', __('cms::page.layouts.home'), 'index');
+        PageLayout::add('post_list', __('cms::page.layouts.post_list'));
 
         Event::listen(NewnetInstalled::class, CreateHomePageListener::class);
     }

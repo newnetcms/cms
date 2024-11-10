@@ -17,6 +17,7 @@ return [
 
     'layouts' => [
         'home' => 'Home',
+        'post_list' => 'Posts',
     ],
 
     'index' => [

@@ -17,6 +17,7 @@ return [
 
     'layouts' => [
         'home' => 'Trang chủ',
+        'post_list' => 'Bài viết',
     ],
 
     'index' => [
