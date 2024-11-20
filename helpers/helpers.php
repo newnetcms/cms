@@ -222,3 +222,23 @@ if (!function_exists('get_cms_page_url')) {
         return $page?->url;
     }
 }
+
+if (!function_exists('get_cms_page_by_layout')) {
+    function get_cms_page_by_layout($page_layout)
+    {
+        return Page::where('is_active', 1)
+            ->where('page_layout', $page_layout)
+            ->first();
+    }
+}
+
+if (!function_exists('get_cms_page_url_by_layout')) {
+    function get_cms_page_url_by_layout($page_layout)
+    {
+        $page = Page::where('is_active', 1)
+            ->where('page_layout', $page_layout)
+            ->first();
+
+        return $page?->url;
+    }
+}
