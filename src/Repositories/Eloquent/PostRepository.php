@@ -150,6 +150,7 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
         $catIds = $post->categories->pluck('id')->toArray();
 
         return Post::whereIsActive(1)
+            ->where('id', '!=', $post->id)
             ->whereHas('categories', function ($q) use ($catIds) {
                 $q->whereIn('category_id', $catIds);
             })
