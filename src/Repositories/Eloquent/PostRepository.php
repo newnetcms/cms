@@ -12,6 +12,11 @@ use Newnet\Core\Repositories\BaseRepository;
 
 class PostRepository extends BaseRepository implements PostRepositoryInterface
 {
+    public function __construct(Post $model)
+    {
+        parent::__construct($model);
+    }
+
     public function create(array $data)
     {
         $this->autoFillFirstCategory($data);
@@ -153,6 +158,21 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
             ->where('id', '!=', $post->id)
             ->whereHas('categories', function ($q) use ($catIds) {
                 $q->whereIn('category_id', $catIds);
+            })
+            ->orderByDesc('published_at')
+            ->orderByDesc('id')
+            ->paginate($limit);
+    }
+
+    public function search($searchKeyword, $limit = 10)
+    {
+        return Post::where('is_active', 1)
+            ->where(function ($q) use ($searchKeyword) {
+                foreach (explode(' ', $searchKeyword) as $keyword) {
+                    if ($keyword = trim($keyword)) {
+                        $q->where('name', 'like', "%{$keyword}%");
+                    }
+                }
             })
             ->orderByDesc('published_at')
             ->orderByDesc('id')
