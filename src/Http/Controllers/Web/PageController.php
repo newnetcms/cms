@@ -4,17 +4,16 @@ namespace Newnet\Cms\Http\Controllers\Web;
 
 use Illuminate\Routing\Controller;
 use Newnet\Cms\Models\Page;
-use Newnet\Cms\Repositories\Eloquent\PageRepository;
-use Newnet\Cms\Repositories\PageRepositoryInterface;
+use Newnet\Cms\Repositories\PageRepository;
 
 class PageController extends Controller
 {
     /**
-     * @var PageRepositoryInterface|PageRepository
+     * @var PageRepository
      */
     private $pageRepository;
 
-    public function __construct(PageRepositoryInterface $pageRepository)
+    public function __construct(PageRepository $pageRepository)
     {
         $this->pageRepository = $pageRepository;
     }

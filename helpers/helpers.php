@@ -3,8 +3,8 @@
 use Newnet\Cms\Models\Category;
 use Newnet\Cms\Models\Page;
 use Newnet\Cms\Models\Post;
-use Newnet\Cms\Repositories\CategoryRepositoryInterface;
-use Newnet\Cms\Repositories\PostRepositoryInterface;
+use Newnet\Cms\Repositories\CategoryRepository;
+use Newnet\Cms\Repositories\PostRepository;
 
 if (!function_exists('get_page_layout_options')) {
     /**
@@ -103,7 +103,7 @@ if (!function_exists('get_cms_last_post')) {
      */
     function get_cms_last_post($limit = 20)
     {
-        return app(PostRepositoryInterface::class)->lastPost($limit);
+        return app(PostRepository::class)->lastPost($limit);
     }
 }
 
@@ -114,7 +114,7 @@ if (!function_exists('get_cms_post_top_view')) {
      */
     function get_cms_post_top_view($limit = 20)
     {
-        return app(PostRepositoryInterface::class)->topView($limit);
+        return app(PostRepository::class)->topView($limit);
     }
 }
 
@@ -164,35 +164,35 @@ if (!function_exists('get_cms_read_time')) {
 if (!function_exists('get_cms_categories_root')) {
     function get_cms_categories_root()
     {
-        return app(CategoryRepositoryInterface::class)->listRoot();
+        return app(CategoryRepository::class)->listRoot();
     }
 }
 
 if (!function_exists('get_cms_count_posts')) {
     function get_cms_count_posts()
     {
-        return app(PostRepositoryInterface::class)->count();
+        return app(PostRepository::class)->count();
     }
 }
 
 if (!function_exists('get_cms_count_posts_in_category')) {
     function get_cms_count_posts_in_category(Category $category)
     {
-        return app(PostRepositoryInterface::class)->countInCategory($category);
+        return app(PostRepository::class)->countInCategory($category);
     }
 }
 
 if (!function_exists('get_cms_sticky_post')) {
     function get_cms_sticky_post($limit)
     {
-        return app(PostRepositoryInterface::class)->stickyPost($limit);
+        return app(PostRepository::class)->stickyPost($limit);
     }
 }
 
 if (!function_exists('get_cms_related_posts')) {
     function get_cms_related_posts(Post $post, $limit = 10)
     {
-        return app(PostRepositoryInterface::class)->relatedPosts($post, $limit);
+        return app(PostRepository::class)->relatedPosts($post, $limit);
     }
 }
 

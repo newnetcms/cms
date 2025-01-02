@@ -1,25 +1,22 @@
 <?php
 
-namespace Newnet\Cms\Repositories\Eloquent;
+namespace Newnet\Cms\Repositories;
 
 use Newnet\Cms\Models\Page;
-use Newnet\Cms\Repositories\PageRepositoryInterface;
-use Newnet\Core\Repositories\AuthorRepositoryInterface;
 use Newnet\Core\Repositories\AuthorRepositoryTrait;
 use Newnet\Core\Repositories\BaseRepository;
 use Newnet\Core\Repositories\NestedRepositoryTrait;
 
-class PageRepository extends BaseRepository implements PageRepositoryInterface, AuthorRepositoryInterface
+class PageRepository extends BaseRepository
 {
     use AuthorRepositoryTrait;
     use NestedRepositoryTrait;
 
-    /**
-     * Get Page Active by Slug
-     *
-     * @param $slug
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|Page
-     */
+    public function __construct(Page $model)
+    {
+        parent::__construct($model);
+    }
+
     public function findBySlug($slug)
     {
         return $this->model
@@ -28,12 +25,6 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface, 
             ->firstOrFail();
     }
 
-    /**
-     * Get Page Active by ID
-     *
-     * @param $id
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|Page
-     */
     public function findActive($id)
     {
         return $this->model

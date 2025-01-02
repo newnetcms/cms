@@ -1,16 +1,15 @@
 <?php
 
-namespace Newnet\Cms\Repositories\Eloquent;
+namespace Newnet\Cms\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Newnet\Cms\Models\Category;
 use Newnet\Cms\Models\Post;
-use Newnet\Cms\Repositories\PostRepositoryInterface;
 use Newnet\Core\Repositories\BaseRepository;
 
-class PostRepository extends BaseRepository implements PostRepositoryInterface
+class PostRepository extends BaseRepository
 {
     public function __construct(Post $model)
     {

@@ -8,18 +8,17 @@ use Illuminate\Support\Facades\Session;
 use Newnet\Cms\CmsAdminMenuKey;
 use Newnet\Cms\Http\Requests\CategoryRequest;
 use Newnet\Cms\Models\Category;
-use Newnet\Cms\Repositories\CategoryRepositoryInterface;
-use Newnet\Cms\Repositories\Eloquent\CategoryRepository;
+use Newnet\Cms\Repositories\CategoryRepository;
 use Newnet\AdminUi\Facades\AdminMenu;
 
 class CategoryController extends Controller
 {
     /**
-     * @var CategoryRepositoryInterface|CategoryRepository
+     * @var CategoryRepository
      */
     private $categoryRepository;
 
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    public function __construct(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }

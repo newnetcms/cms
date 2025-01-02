@@ -8,18 +8,17 @@ use Illuminate\Support\Facades\Session;
 use Newnet\Cms\CmsAdminMenuKey;
 use Newnet\Cms\Http\Requests\PageRequest;
 use Newnet\Cms\Models\Page;
-use Newnet\Cms\Repositories\Eloquent\PageRepository;
-use Newnet\Cms\Repositories\PageRepositoryInterface;
+use Newnet\Cms\Repositories\PageRepository;
 use Newnet\AdminUi\Facades\AdminMenu;
 
 class PageController extends Controller
 {
     /**
-     * @var PageRepositoryInterface|PageRepository
+     * @var PageRepository
      */
     private $pageRepository;
 
-    public function __construct(PageRepositoryInterface $pageRepository)
+    public function __construct(PageRepository $pageRepository)
     {
         $this->pageRepository = $pageRepository;
     }

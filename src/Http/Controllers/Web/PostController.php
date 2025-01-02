@@ -4,17 +4,16 @@ namespace Newnet\Cms\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Newnet\Cms\Repositories\Eloquent\PostRepository;
-use Newnet\Cms\Repositories\PostRepositoryInterface;
+use Newnet\Cms\Repositories\PostRepository;
 
 class PostController extends Controller
 {
     /**
-     * @var PostRepositoryInterface|PostRepository
+     * @var PostRepository
      */
     private $postRepository;
 
-    public function __construct(PostRepositoryInterface $postRepository)
+    public function __construct(PostRepository $postRepository)
     {
         $this->postRepository = $postRepository;
     }

@@ -8,18 +8,17 @@ use Illuminate\Support\Facades\Session;
 use Newnet\Cms\CmsAdminMenuKey;
 use Newnet\Cms\Http\Requests\PostRequest;
 use Newnet\Cms\Models\Post;
-use Newnet\Cms\Repositories\Eloquent\PostRepository;
-use Newnet\Cms\Repositories\PostRepositoryInterface;
+use Newnet\Cms\Repositories\PostRepository;
 use Newnet\AdminUi\Facades\AdminMenu;
 
 class PostController extends Controller
 {
     /**
-     * @var PostRepositoryInterface|PostRepository
+     * @var PostRepository
      */
     private $postRepository;
 
-    public function __construct(PostRepositoryInterface $postRepository)
+    public function __construct(PostRepository $postRepository)
     {
         $this->postRepository = $postRepository;
     }

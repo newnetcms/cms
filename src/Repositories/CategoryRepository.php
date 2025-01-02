@@ -1,33 +1,18 @@
 <?php
 
-namespace Newnet\Cms\Repositories\Eloquent;
+namespace Newnet\Cms\Repositories;
 
 use Newnet\Cms\Models\Category;
-use Newnet\Cms\Repositories\CategoryRepositoryInterface;
 use Newnet\Core\Repositories\BaseRepository;
-use Newnet\Core\Repositories\NestedRepositoryInterface;
 use Newnet\Core\Repositories\NestedRepositoryTrait;
 
-class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface, NestedRepositoryInterface
+class CategoryRepository extends BaseRepository
 {
     use NestedRepositoryTrait;
 
-    public function create(array $data)
+    public function __construct(Category $model)
     {
-        $model = parent::create($data);
-
-        $this->model->fixTree();
-
-        return $model;
-    }
-
-    public function updateById(array $data, $id)
-    {
-        $model = parent::updateById($data, $id);
-
-        $this->model->fixTree();
-
-        return $model;
+        parent::__construct($model);
     }
 
     public function findBySlug($slug)

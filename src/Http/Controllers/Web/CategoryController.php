@@ -5,24 +5,22 @@ namespace Newnet\Cms\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Newnet\Cms\Models\Category;
-use Newnet\Cms\Repositories\CategoryRepositoryInterface;
-use Newnet\Cms\Repositories\Eloquent\CategoryRepository;
-use Newnet\Cms\Repositories\Eloquent\PostRepository;
-use Newnet\Cms\Repositories\PostRepositoryInterface;
+use Newnet\Cms\Repositories\CategoryRepository;
+use Newnet\Cms\Repositories\PostRepository;
 
 class CategoryController extends Controller
 {
     /**
-     * @var CategoryRepositoryInterface|CategoryRepository
+     * @var CategoryRepository
      */
     private $categoryRepository;
 
     /**
-     * @var PostRepositoryInterface|PostRepository
+     * @var PostRepository
      */
     private $postRepository;
 
-    public function __construct(CategoryRepositoryInterface $categoryRepository, PostRepositoryInterface $postRepository)
+    public function __construct(CategoryRepository $categoryRepository, PostRepository $postRepository)
     {
         $this->categoryRepository = $categoryRepository;
         $this->postRepository = $postRepository;
