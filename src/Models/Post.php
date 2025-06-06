@@ -78,6 +78,7 @@ class Post extends Model
         'post_type',
         'description',
         'content',
+        'markdown_content',
         'is_active',
         'is_sticky',
         'sort_order',
