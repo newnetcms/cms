@@ -49,69 +49,71 @@
                 </a>
             </form>
 
-            <table class="table table-striped table-bordered dt-responsive nowrap bootstrap4-styling">
-                <thead>
-                <tr>
-                    <th>{{ __('#') }}</th>
-                    <th>{{ __('cms::post.name') }}</th>
-                    <th>{{ __('cms::post.category') }}</th>
-                    <th>{{ __('cms::post.is_active') }}</th>
-                    <th>{{ __('cms::post.is_sticky') }}</th>
-                    <th>{{ __('cms::post.author') }}</th>
-                    <th>{{ __('cms::post.created_at') }}</th>
-                    <th>@translatableHeader</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($items as $item)
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered dt-responsive nowrap bootstrap4-styling">
+                    <thead>
                     <tr>
-                        <td>{{ $loop->index + $items->firstItem() }}</td>
-                        <td>
-                            @if($item->name)
-                                <a href="{{ route('cms.admin.post.edit', $item->id) }}">
-                                    {{ $item->name }}
-                                </a>
-                                <a href="{{ $item->url }}" target="_blank" title="{{ __('core::button.view') }}">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                            @else
-                                <a href="{{ route('cms.admin.post.edit', $item->id) }}">
-                                    <span class="nn-no-translation">[{{ __('No Translation') }}]</span>
-                                </a>
-                            @endif
-                        </td>
-                        <td>{{ $item->categories->implode('name', ',') }}</td>
-                        <td>
-                            @if($item->is_active)
-                                <i class="fas fa-check text-success"></i>
-                            @endif
-                        </td>
-                        <td>
-                            @if($item->is_sticky)
-                                <i class="fas fa-check text-success"></i>
-                            @endif
-                        </td>
-                        <td>{{ object_get($item->author, 'name') }}</td>
-                        <td>{{ $item->created_at }}</td>
-                        <td>
-                            @translatableStatus(['editUrl' => route('cms.admin.post.edit', $item->id)])
-                        </td>
-                        <td class="text-right">
-                            @admincan('cms.admin.post.edit')
+                        <th>{{ __('#') }}</th>
+                        <th nowrap>{{ __('cms::post.name') }}</th>
+                        <th nowrap>{{ __('cms::post.category') }}</th>
+                        <th nowrap>{{ __('cms::post.is_active') }}</th>
+                        <th nowrap>{{ __('cms::post.is_sticky') }}</th>
+                        <th nowrap>{{ __('cms::post.author') }}</th>
+                        <th nowrap>{{ __('cms::post.created_at') }}</th>
+                        <th nowrap>@translatableHeader</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($items as $item)
+                        <tr>
+                            <td>{{ $loop->index + $items->firstItem() }}</td>
+                            <td>
+                                @if($item->name)
+                                    <a href="{{ route('cms.admin.post.edit', $item->id) }}">
+                                        {{ $item->name }}
+                                    </a>
+                                    <a href="{{ $item->url }}" target="_blank" title="{{ __('core::button.view') }}">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('cms.admin.post.edit', $item->id) }}">
+                                        <span class="nn-no-translation">[{{ __('No Translation') }}]</span>
+                                    </a>
+                                @endif
+                            </td>
+                            <td>{{ $item->categories->implode('name', ',') }}</td>
+                            <td>
+                                @if($item->is_active)
+                                    <i class="fas fa-check text-success"></i>
+                                @endif
+                            </td>
+                            <td>
+                                @if($item->is_sticky)
+                                    <i class="fas fa-check text-success"></i>
+                                @endif
+                            </td>
+                            <td nowrap>{{ object_get($item->author, 'name') }}</td>
+                            <td nowrap>{{ $item->created_at }}</td>
+                            <td nowrap>
+                                @translatableStatus(['editUrl' => route('cms.admin.post.edit', $item->id)])
+                            </td>
+                            <td nowrap class="text-right">
+                                @admincan('cms.admin.post.edit')
                                 <a href="{{ route('cms.admin.post.edit', $item->id) }}" class="btn btn-success-soft btn-sm mr-1">
                                     <i class="fas fa-pencil-alt"></i>
                                 </a>
-                            @endadmincan
+                                @endadmincan
 
-                            @admincan('cms.admin.post.destroy')
+                                @admincan('cms.admin.post.destroy')
                                 <table-button-delete url-delete="{{ route('cms.admin.post.destroy', $item->id) }}"></table-button-delete>
-                            @endadmincan
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                                @endadmincan
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
 
             {!! $items->appends(Request::all())->render() !!}
         </div>
