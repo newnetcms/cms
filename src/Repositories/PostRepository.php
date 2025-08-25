@@ -96,6 +96,18 @@ class PostRepository extends BaseRepository
             });
         }
 
+        if ($is_active = request('is_active')) {
+            $data->where('is_active', $is_active);
+        }
+
+        if ($post_type = request('post_type')) {
+            $data->where('post_type', $post_type);
+        }
+
+        if ($lang = request('lang')) {
+            $data->where('post_type', $lang);
+        }
+
         return $data
             ->orderBy('created_at', 'desc')
             ->paginate($itemOnPage);
