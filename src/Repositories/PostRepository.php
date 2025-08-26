@@ -96,7 +96,8 @@ class PostRepository extends BaseRepository
             });
         }
 
-        if ($is_active = request('is_active')) {
+        $is_active = request('is_active');
+        if (!is_null($is_active)) {
             $data->where('is_active', $is_active);
         }
 
