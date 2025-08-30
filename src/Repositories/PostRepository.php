@@ -96,6 +96,19 @@ class PostRepository extends BaseRepository
             });
         }
 
+        $is_active = request('is_active');
+        if (!is_null($is_active)) {
+            $data->where('is_active', $is_active);
+        }
+
+        if ($post_type = request('post_type')) {
+            $data->where('post_type', $post_type);
+        }
+
+        if ($lang = request('lang')) {
+            $data->where('post_type', $lang);
+        }
+
         return $data
             ->orderBy('created_at', 'desc')
             ->paginate($itemOnPage);
@@ -149,11 +162,11 @@ class PostRepository extends BaseRepository
             ->get();
     }
 
-    public function relatedPosts(Post $post, $limit = 10)
+    public function relatedPosts(Post $post, $limit = 10, $lastPostIfEmpty = false)
     {
         $catIds = $post->categories->pluck('id')->toArray();
 
-        return Post::whereIsActive(1)
+        $posts = Post::whereIsActive(1)
             ->where('id', '!=', $post->id)
             ->whereHas('categories', function ($q) use ($catIds) {
                 $q->whereIn('category_id', $catIds);
@@ -161,6 +174,16 @@ class PostRepository extends BaseRepository
             ->orderByDesc('published_at')
             ->orderByDesc('id')
             ->paginate($limit);
+
+        if ($posts->isEmpty() && $lastPostIfEmpty) {
+            $posts = Post::whereIsActive(1)
+                ->where('id', '!=', $post->id)
+                ->orderByDesc('published_at')
+                ->orderByDesc('id')
+                ->paginate($limit);
+        }
+
+        return $posts;
     }
 
     public function search($searchKeyword, $limit = 10)

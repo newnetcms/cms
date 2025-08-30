@@ -190,9 +190,9 @@ if (!function_exists('get_cms_sticky_post')) {
 }
 
 if (!function_exists('get_cms_related_posts')) {
-    function get_cms_related_posts(Post $post, $limit = 10)
+    function get_cms_related_posts(Post $post, $limit = 10, $lastPostIfEmpty = false)
     {
-        return app(PostRepository::class)->relatedPosts($post, $limit);
+        return app(PostRepository::class)->relatedPosts($post, $limit, $lastPostIfEmpty);
     }
 }
 

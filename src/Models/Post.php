@@ -97,7 +97,7 @@ class Post extends Model
     ];
 
     protected $casts = [
-        'is_active' => 'boolean',
+        'is_active' => 'integer',
         'is_sticky' => 'boolean',
         'published_at' => 'datetime',
     ];
