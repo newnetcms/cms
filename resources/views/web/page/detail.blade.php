@@ -6,7 +6,7 @@
     @seometa(['item' => $page])
 @stop
 
-@section('body-class', "page-detail page-layout-{$page->page_layout}")
+@section('body-class', 'page-detail page-layout-' . ($page->page_layout ?? 'default'))
 
 @section('content')
     @includeFirst([
