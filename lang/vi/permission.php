@@ -12,6 +12,7 @@ return [
         'create'  => 'Tạo mới bài viết',
         'edit'    => 'Sửa bài viết',
         'destroy' => 'Xóa bài viết',
+        'manage_all' => 'Quản lý tất cả bài viết',
     ],
 
     'category' => [

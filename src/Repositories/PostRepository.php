@@ -5,6 +5,7 @@ namespace Newnet\Cms\Repositories;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Newnet\Acl\Models\Admin;
 use Newnet\Cms\Models\Category;
 use Newnet\Cms\Models\Post;
 use Newnet\Core\Repositories\BaseRepository;
@@ -107,6 +108,12 @@ class PostRepository extends BaseRepository
 
         if ($lang = request('lang')) {
             $data->where('post_type', $lang);
+        }
+
+        if (config('cms.cms.enable_manage_own') && !admin_can('cms.admin.post.manage_all')) {
+            $data
+                ->where('author_type', Admin::class)
+                ->where('author_id', auth('admin')->id());
         }
 
         return $data

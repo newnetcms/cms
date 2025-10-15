@@ -19,4 +19,6 @@ return [
     'media_manager' => true,
 
     'enable_post_type' => env('CMS_ENABLE_POST_TYPE', false),
+
+    'enable_manage_own' => env('CMS_ENABLE_MANAGE_OWN', false),
 ];

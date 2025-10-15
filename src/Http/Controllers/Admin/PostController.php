@@ -5,6 +5,7 @@ namespace Newnet\Cms\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Session;
+use Newnet\Acl\Models\Admin;
 use Newnet\Cms\CmsAdminMenuKey;
 use Newnet\Cms\Http\Requests\PostRequest;
 use Newnet\Cms\Models\Post;
@@ -48,25 +49,36 @@ class PostController extends Controller
             ->with('success', __('cms::post.notification.created'));
     }
 
+    public function show($id)
+    {
+        return redirect()->route('cms.admin.post.edit', $id);
+    }
+
     public function edit($id)
     {
         AdminMenu::activeMenu(CmsAdminMenuKey::POST);
 
-        $item = $this->postRepository->find($id);;
+        $item = $this->postRepository->find($id);
+
+        $this->checkPermission($item);
 
         return view('cms::admin.post.edit', compact('item'));
     }
 
     public function update($id, Request $request)
     {
-        $this->postRepository->updateById($request->all(), $id);
+        $item = $this->postRepository->find($id);
+        $this->checkPermission($item);
+        $item->update($request->all());
 
         return back()->with('success', __('cms::post.notification.updated'));
     }
 
     public function destroy($id, Request $request)
     {
-        $this->postRepository->delete($id);
+        $item = $this->postRepository->find($id);
+        $this->checkPermission($item);
+        $item->delete();
 
         if ($request->wantsJson()) {
             Session::flash('success', __('cms::post.notification.deleted'));
@@ -78,5 +90,14 @@ class PostController extends Controller
         return redirect()
             ->route('cms.admin.post.index')
             ->with('success', __('cms::post.notification.deleted'));
+    }
+
+    public function checkPermission(mixed $item)
+    {
+        if (config('cms.cms.enable_manage_own') && !admin_can('cms.admin.post.manage_all')) {
+            if (!($item->author_type == Admin::class && $item->author_id == auth('admin')->id())) {
+                abort(403);
+            }
+        }
     }
 }

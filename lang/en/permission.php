@@ -12,6 +12,7 @@ return [
         'create'  => 'Create post',
         'edit'    => 'Edit post',
         'destroy' => 'Delete post',
+        'manage_all' => 'Manage all post',
     ],
 
     'category' => [
