@@ -48,76 +48,78 @@
                 </a>
             </form>
 
-            <table class="table table-striped table-bordered dt-responsive nowrap bootstrap4-styling">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>{{ __('cms::page.name') }}</th>
-                    <th>{{ __('cms::page.is_active') }}</th>
-                    <th>{{ __('cms::page.page_layout') }}</th>
-                    <th>{{ __('cms::page.author') }}</th>
-                    <th>{{ __('cms::page.created_at') }}</th>
-                    <th>@translatableHeader</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($items as $item)
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered dt-responsive nowrap bootstrap4-styling">
+                    <thead>
                     <tr>
-                        <td>{{ $loop->index + $items->firstItem() }}</td>
-                        <td>
-                            <a href="{{ route('cms.admin.page.edit', $item->id) }}">
-                                {{ trim(str_pad('', $item->depth * 3, '-')) }}
-                                {{ $item->name }}
-                            </a>
-                            <a href="{{ $item->url }}" target="_blank" title="{{ __('core::button.view') }}">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </td>
-                        <td>
-                            @if($item->is_active)
-                                <i class="fas fa-check text-success"></i>
-                            @endif
-                        </td>
-                        <td>{{ get_page_layout_label($item->page_layout) }}</td>
-                        <td>{{ object_get($item->author, 'name') }}</td>
-                        <td>{{ $item->created_at }}</td>
-                        <td>
-                            @translatableStatus(['editUrl' => route('cms.admin.page.edit', $item->id)])
-                        </td>
-                        <td class="text-right">
-                            @admincan('cms.admin.page.create')
-                                <a href="{{ route('cms.admin.page.create', ['id' => $item->id, 'parent_id' => $item->id]) }}" class="btn btn-primary-soft btn-sm mr-1">
-                                    <i class="fas fa-plus"></i>
-                                </a>
-                            @endadmincan
-
-                            @admincan('cms.admin.page.edit')
-                                <a href="{{ route('cms.admin.page.move-up', $item->id) }}" class="btn btn-info-soft btn-sm mr-1">
-                                    <i class="fas fa-chevron-up"></i>
-                                </a>
-                            @endadmincan
-
-                            @admincan('cms.admin.page.edit')
-                                <a href="{{ route('cms.admin.page.move-down', $item->id) }}" class="btn btn-info-soft btn-sm mr-1">
-                                    <i class="fas fa-chevron-down"></i>
-                                </a>
-                            @endadmincan
-
-                            @admincan('cms.admin.page.edit')
-                                <a href="{{ route('cms.admin.page.edit', $item->id) }}" class="btn btn-success-soft btn-sm mr-1">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
-                            @endadmincan
-
-                            @admincan('cms.admin.page.destroy')
-                                <table-button-delete url-delete="{{ route('cms.admin.page.destroy', $item->id) }}"></table-button-delete>
-                            @endadmincan
-                        </td>
+                        <th nowrap>#</th>
+                        <th nowrap>{{ __('cms::page.name') }}</th>
+                        <th nowrap>{{ __('cms::page.is_active') }}</th>
+                        <th nowrap>{{ __('cms::page.page_layout') }}</th>
+                        <th nowrap>{{ __('cms::page.author') }}</th>
+                        <th nowrap>{{ __('cms::page.created_at') }}</th>
+                        <th nowrap>@translatableHeader</th>
+                        <th></th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($items as $item)
+                        <tr>
+                            <td nowrap>{{ $loop->index + $items->firstItem() }}</td>
+                            <td style="min-width: 250px;">
+                                <a href="{{ route('cms.admin.page.edit', $item->id) }}">
+                                    {{ trim(str_pad('', $item->depth * 3, '-')) }}
+                                    {{ $item->name }}
+                                </a>
+                                <a href="{{ $item->url }}" target="_blank" title="{{ __('core::button.view') }}">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </td>
+                            <td nowrap>
+                                @if($item->is_active)
+                                    <i class="fas fa-check text-success"></i>
+                                @endif
+                            </td>
+                            <td nowrap>{{ get_page_layout_label($item->page_layout) }}</td>
+                            <td nowrap>{{ object_get($item->author, 'name') }}</td>
+                            <td nowrap>{{ $item->created_at }}</td>
+                            <td nowrap>
+                                @translatableStatus(['editUrl' => route('cms.admin.page.edit', $item->id)])
+                            </td>
+                            <td nowrap class="text-right">
+                                @admincan('cms.admin.page.create')
+                                    <a href="{{ route('cms.admin.page.create', ['id' => $item->id, 'parent_id' => $item->id]) }}" class="btn btn-primary-soft btn-sm mr-1">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                @endadmincan
+
+                                @admincan('cms.admin.page.edit')
+                                    <a href="{{ route('cms.admin.page.move-up', $item->id) }}" class="btn btn-info-soft btn-sm mr-1">
+                                        <i class="fas fa-chevron-up"></i>
+                                    </a>
+                                @endadmincan
+
+                                @admincan('cms.admin.page.edit')
+                                    <a href="{{ route('cms.admin.page.move-down', $item->id) }}" class="btn btn-info-soft btn-sm mr-1">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </a>
+                                @endadmincan
+
+                                @admincan('cms.admin.page.edit')
+                                    <a href="{{ route('cms.admin.page.edit', $item->id) }}" class="btn btn-success-soft btn-sm mr-1">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                @endadmincan
+
+                                @admincan('cms.admin.page.destroy')
+                                    <table-button-delete url-delete="{{ route('cms.admin.page.destroy', $item->id) }}"></table-button-delete>
+                                @endadmincan
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
 
             {!! $items->appends(Request::all())->render() !!}
         </div>

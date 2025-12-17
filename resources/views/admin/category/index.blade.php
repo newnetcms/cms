@@ -64,7 +64,7 @@
                     <tbody>
                     @foreach($items as $item)
                         <tr>
-                            <td>{{ $loop->index + $items->firstItem() }}</td>
+                            <td nowrap>{{ $loop->index + $items->firstItem() }}</td>
                             <td nowrap>
                                 <a href="{{ route('cms.admin.category.edit', $item->id) }}">
                                     {{ trim(str_pad('', $item->depth * 3, '-')) }}
@@ -74,7 +74,7 @@
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </td>
-                            <td>{{ $item->description }}</td>
+                            <td style="min-width: 250px;">{{ $item->description }}</td>
                             <td nowrap>
                                 @if($item->is_active)
                                     <i class="fas fa-check text-success"></i>
