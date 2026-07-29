@@ -44,6 +44,10 @@ return [
         'deleted' => 'Xóa trang thành công!',
     ],
 
+    'validation' => [
+        'home_url_taken' => 'Ngôn ngữ này đã có một trang khác được gán làm Trang chủ (đường dẫn "/"). Vui lòng đổi Page Layout của trang đó trước khi đặt trang này làm Trang chủ.',
+    ],
+
     'tabs' => [
         'info'      => 'Thông tin chung',
         'seo'       => 'SEO',

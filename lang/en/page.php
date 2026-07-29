@@ -44,6 +44,10 @@ return [
         'deleted' => 'Page successfully deleted!',
     ],
 
+    'validation' => [
+        'home_url_taken' => 'Another page is already set as the Home page ("/") for this language. Please change that page\'s Page Layout before assigning this one as Home.',
+    ],
+
     'tabs' => [
         'info'      => 'Information',
         'seo'       => 'SEO',
