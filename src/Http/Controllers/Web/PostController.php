@@ -28,10 +28,13 @@ class PostController extends Controller
     public function detail($id, Request $request)
     {
         $post = $this->postRepository->find($id);
-        if ($post){
-            $totalViewed = $post->is_viewed + 1;
-            $post->update(['is_viewed' => $totalViewed]);
+
+        if (!$post || !$post->is_active) {
+            abort(404);
         }
+
+        $totalViewed = $post->is_viewed + 1;
+        $post->update(['is_viewed' => $totalViewed]);
 
         return view('cms::web.post.detail', compact('post'));
     }
