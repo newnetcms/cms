@@ -36,6 +36,7 @@ return [
         'page_title'    => 'Sửa trang',
         'page_subtitle' => 'Sửa trang',
         'breadcrumb'    => 'Sửa trang',
+        'preview'       => 'Xem trước',
     ],
 
     'notification' => [

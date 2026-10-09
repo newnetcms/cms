@@ -2,7 +2,9 @@
 
 namespace Newnet\Cms\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Newnet\Seo\Traits\SeoableTrait;
 use Newnet\Core\Support\Traits\TranslatableTrait;
@@ -122,6 +124,16 @@ class Post extends Model
     public function getUrl()
     {
         return route('cms.web.post.detail', $this->id);
+    }
+
+    /**
+     * URL xem trước có chữ ký, dùng được cả khi bài chưa xuất bản. Mặc định hết hạn sau cms.cms.preview_lifetime phút.
+     */
+    public function previewUrl(?DateTimeInterface $expiration = null)
+    {
+        $expiration = $expiration ?: now()->addMinutes((int) config('cms.cms.preview_lifetime', 10080));
+
+        return URL::temporarySignedRoute('cms.web.post.preview', $expiration, ['id' => $this->id]);
     }
 
     public function getCategoryAttribute()

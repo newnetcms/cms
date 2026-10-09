@@ -3,7 +3,9 @@
 namespace Newnet\Cms\Models;
 
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 use Newnet\Seo\Traits\SeoableTrait;
 use Newnet\Core\Support\Traits\TranslatableTrait;
 use Newnet\Core\Support\Traits\TreeCacheableTrait;
@@ -144,6 +146,16 @@ class Page extends Model
     public function getUrl()
     {
         return route('cms.web.page.detail', $this->id);
+    }
+
+    /**
+     * URL xem trước có chữ ký, dùng được cả khi trang chưa kích hoạt. Mặc định hết hạn sau cms.cms.preview_lifetime phút.
+     */
+    public function previewUrl(?DateTimeInterface $expiration = null)
+    {
+        $expiration = $expiration ?: now()->addMinutes((int) config('cms.cms.preview_lifetime', 10080));
+
+        return URL::temporarySignedRoute('cms.web.page.preview', $expiration, ['id' => $this->id]);
     }
 
     public function setImageAttribute($value)

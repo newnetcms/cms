@@ -21,4 +21,6 @@ return [
     'enable_post_type' => env('CMS_ENABLE_POST_TYPE', false),
 
     'enable_manage_own' => env('CMS_ENABLE_MANAGE_OWN', false),
+    // Thời hạn (phút) của URL xem trước bài viết/trang chưa xuất bản, mặc định 7 ngày
+    'preview_lifetime' => env('CMS_PREVIEW_LIFETIME', 10080),
 ];

@@ -38,4 +38,21 @@ class PostController extends Controller
 
         return view('cms::web.post.detail', compact('post'));
     }
+
+    /**
+     * Xem trước bài viết, kể cả bài nháp. Route có middleware "signed" nên chỉ ai có URL hợp lệ mới xem được.
+     */
+    public function preview($id)
+    {
+        $post = $this->postRepository->find($id);
+
+        if (!$post) {
+            abort(404);
+        }
+
+        return response()
+            ->view('cms::web.post.detail', ['post' => $post, 'isPreview' => true])
+            ->header('X-Robots-Tag', 'noindex, nofollow')
+            ->header('Cache-Control', 'private, no-store');
+    }
 }

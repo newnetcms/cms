@@ -30,6 +30,9 @@
                         </h6>
                     </div>
                     <div class="text-right">
+                        <a href="{{ $item->previewUrl() }}" target="_blank" rel="noopener" class="btn btn-outline-secondary mr-2">
+                            <i class="fas fa-eye"></i> {{ __('cms::post.edit.preview') }}
+                        </a>
                         <div class="btn-group">
                             <button class="btn btn-success" type="submit">{{ __('core::button.save') }}</button>
                         </div>

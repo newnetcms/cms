@@ -31,6 +31,7 @@ return [
         'page_title'    => 'Sửa bài viết',
         'page_subtitle' => 'Sửa bài viết',
         'breadcrumb'    => 'Sửa',
+        'preview'       => 'Xem trước',
     ],
 
     'notification' => [

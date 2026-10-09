@@ -31,6 +31,7 @@ return [
         'page_title'    => 'Edit Post',
         'page_subtitle' => 'Edit Post',
         'breadcrumb'    => 'Edit',
+        'preview'       => 'Preview',
     ],
 
     'notification' => [
