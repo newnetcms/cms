@@ -73,9 +73,15 @@
                                     <a href="{{ route('cms.admin.post.edit', $item->id) }}">
                                         {{ $item->name }}
                                     </a>
-                                    <a href="{{ $item->url }}" target="_blank" title="{{ __('core::button.view') }}">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
+                                    @if($item->is_active)
+                                        <a href="{{ $item->url }}" target="_blank" title="{{ __('core::button.view') }}">
+                                            <i class="fas fa-external-link-alt text-success"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ $item->previewUrl() }}" target="_blank" title="{{ __('cms::post.edit.preview') }}">
+                                            <i class="fas fa-eye text-warning"></i>
+                                        </a>
+                                    @endif
                                 @else
                                     <a href="{{ route('cms.admin.post.edit', $item->id) }}">
                                         <span class="nn-no-translation">[{{ __('No Translation') }}]</span>

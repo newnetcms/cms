@@ -30,6 +30,11 @@
                         </h6>
                     </div>
                     <div class="text-right">
+                        @if($item->is_active)
+                            <a href="{{ $item->url }}" target="_blank" rel="noopener" class="btn btn-outline-success mr-2">
+                                <i class="fas fa-external-link-alt"></i> {{ __('core::button.view') }}
+                            </a>
+                        @endif
                         <a href="{{ $item->previewUrl() }}" target="_blank" rel="noopener" class="btn btn-outline-secondary mr-2">
                             <i class="fas fa-eye"></i> {{ __('cms::post.edit.preview') }}
                         </a>
