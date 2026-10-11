@@ -71,9 +71,15 @@
                                     {{ trim(str_pad('', $item->depth * 3, '-')) }}
                                     {{ $item->name }}
                                 </a>
-                                <a href="{{ $item->url }}" target="_blank" title="{{ __('core::button.view') }}">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
+                                @if($item->is_active)
+                                    <a href="{{ $item->url }}" target="_blank" title="{{ __('core::button.view') }}">
+                                        <i class="fas fa-external-link-alt text-success"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ $item->previewUrl() }}" target="_blank" title="{{ __('cms::page.edit.preview') }}">
+                                        <i class="fas fa-eye text-warning"></i>
+                                    </a>
+                                @endif
                             </td>
                             <td nowrap>
                                 @if($item->is_active)
